@@ -17,8 +17,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup Docker
-      uses: docker-practice/actions-setup-docker@master
+    - name: Install Docker
+      run: |
+        sudo apt-get remove docker docker-engine docker.io containerd runc
+        sudo apt-get update
+        sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt-get update
+        sudo apt-get install docker-ce docker-ce-cli containerd.io
 
     - name: Run Docker container
       run: |
@@ -26,13 +33,9 @@ jobs:
         echo "image-backend-ports: ${{ github.event.inputs.image-backend-ports }}"
         docker run -d -p ${{ github.event.inputs.image-backend-ports }} ${{ github.event.inputs.image-backend }}
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
-
     - name: Install Dependencies
       run: |
+        sudo apt-get install -y nodejs npm
         npm install axios mocha moralis ethers
         npm install chai@4.3.4
 
