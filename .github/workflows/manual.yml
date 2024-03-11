@@ -1,0 +1,38 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Docker
+      uses: docker-practice/actions-setup-docker@master
+
+    - name: Run Docker container
+      env:
+        DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE_BACKEND }}
+        DOCKER_PORTS: ${{ secrets.DOCKER_PORTS_BACKEND }}
+      run: |
+      docker run -d -p $DOCKER_PORTS $DOCKER_IMAGE
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: |
+        npm install axios mocha moralis
+        npm install chai@4.3.4
+
+    - name: Run Tests
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        MORALIS_API_KEY: ${{ secrets.MORALIS_API_KEY }}
+      run: npx mocha

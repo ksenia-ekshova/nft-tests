@@ -2,6 +2,9 @@
   "name": "nft-tests",
   "version": "1.0.0",
   "description": "",
+  "mocha": {
+    "timeout": 100000
+  },
   "main": "test.js",
   "scripts": {
     "test": "mocha"
@@ -10,17 +13,21 @@
     "type": "git",
     "url": "git+https://github.com/ksenia-ekshova/nft-tests.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Kseniia Ekshova",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ksenia-ekshova/nft-tests/issues"
   },
   "homepage": "https://github.com/ksenia-ekshova/nft-tests#readme",
   "devDependencies": {
+    "@types/chai": "^4.3.12",
     "axios": "^1.6.7",
     "mocha": "^10.3.0"
   },
   "dependencies": {
-    "chai": "^4.3.4"
+    "@moralisweb3/common-evm-utils": "^2.25.1",
+    "chai": "^4.3.4",
+    "dotenv": "^16.4.5",
+    "moralis": "^2.25.1"
   }
 }
