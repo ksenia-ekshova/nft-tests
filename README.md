@@ -66,3 +66,5 @@ Image for Manual workflow sets via Githun Actions => Manual Workflow => Run Work
 Example value for Ports for image backend `4000:4000`
 Example value for Docker image backend `evercoinx/faraway:nft-collection-deployer-backend`
 
+Automatic run of CI is configured to start with every push into the `main`
+
