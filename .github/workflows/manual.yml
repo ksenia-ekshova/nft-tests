@@ -32,13 +32,15 @@ jobs:
         echo "image-backend: ${{ github.event.inputs.image-backend }}"
         echo "image-backend-ports: ${{ github.event.inputs.image-backend-ports }}"
         docker run -d -p ${{ github.event.inputs.image-backend-ports }} ${{ github.event.inputs.image-backend }}
-
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'     
     - name: Install Dependencies
       run: |
         sudo apt-get install -y nodejs npm
-        npm install axios mocha moralis ethers
-        npm install chai@4.3.4
-
+        npm install axios mocha moralis 
+        npm install chai@4.3.4 ethers@5.4.6
     - name: Run Tests
       env:
         API_KEY: ${{ secrets.API_KEY }}
