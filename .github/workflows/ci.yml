@@ -14,25 +14,22 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Docker
-      uses: docker-practice/actions-setup-docker@master
+      uses: docker/setup-buildx-action@v1
 
     - name: Run Docker container
-      env:
-        DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE_BACKEND }}
-        DOCKER_PORTS: ${{ secrets.DOCKER_PORTS_BACKEND }}
       run: |
-      docker run -d -p $DOCKER_PORTS $DOCKER_IMAGE
-
+        docker run -d -p ${{ secrets.DOCKER_PORTS_BACKEND }} ${{ secrets.DOCKER_IMAGE_BACKEND }}
+        
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '20'
 
     - name: Install Dependencies
       run: |
-        npm install axios mocha moralis
+        npm install axios mocha moralis ethers
         npm install chai@4.3.4
-
+        
     - name: Run Tests
       env:
         API_KEY: ${{ secrets.API_KEY }}

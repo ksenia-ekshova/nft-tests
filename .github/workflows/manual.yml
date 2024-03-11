@@ -22,8 +22,8 @@ jobs:
 
     - name: Run Docker container
       run: |
-        echo "Image address: ${{ github.event.inputs.image-backend }}"
-        echo "Image ports: ${{ github.event.inputs.image-backend-ports }}"
+        echo "image-backend: ${{ github.event.inputs.image-backend }}"
+        echo "image-backend-ports: ${{ github.event.inputs.image-backend-ports }}"
         docker run -d -p ${{ github.event.inputs.image-backend-ports }} ${{ github.event.inputs.image-backend }}
 
     - name: Setup Node.js
@@ -33,7 +33,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        npm install axios mocha moralis
+        npm install axios mocha moralis ethers
         npm install chai@4.3.4
 
     - name: Run Tests

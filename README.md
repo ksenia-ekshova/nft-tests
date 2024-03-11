@@ -61,4 +61,8 @@ npm test/npx mocha
 
 The project is configured to use Github Actions. The configuration file is `.github/workflows/main.yml`.
 Environment variables are set via Secrets
+Image for Manual workflow sets via Githun Actions => Manual Workflow => Run Workflow 
+
+Example value for Ports for image backend `4000:4000`
+Example value for Docker image backend `evercoinx/faraway:nft-collection-deployer-backend`
 
