@@ -1,7 +1,14 @@
 name: Manual Workflow
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
+        inputs:
+            image-backend:
+                description: 'Docker image backend'
+                required: true
+            image-backend-ports:
+                description: 'Ports for image backend'
+                required: true
 
 jobs:
   build:
@@ -14,16 +21,15 @@ jobs:
       uses: docker-practice/actions-setup-docker@master
 
     - name: Run Docker container
-      env:
-        DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE_BACKEND }}
-        DOCKER_PORTS: ${{ secrets.DOCKER_PORTS_BACKEND }}
       run: |
-      docker run -d -p $DOCKER_PORTS_BACKEND $DOCKER_IMAGE_BACKEND
+        echo "Image address: ${{ github.event.inputs.image-backend }}"
+        echo "Image ports: ${{ github.event.inputs.image-backend-ports }}"
+        docker run -d -p ${{ github.event.inputs.image-backend-ports }} ${{ github.event.inputs.image-backend }}
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '20'
 
     - name: Install Dependencies
       run: |
