@@ -18,7 +18,7 @@ jobs:
         DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE_BACKEND }}
         DOCKER_PORTS: ${{ secrets.DOCKER_PORTS_BACKEND }}
       run: |
-      docker run -d -p $DOCKER_PORTS $DOCKER_IMAGE
+      docker run -d -p $DOCKER_PORTS_BACKEND $DOCKER_IMAGE_BACKEND
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
