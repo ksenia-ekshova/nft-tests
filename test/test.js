@@ -124,10 +124,12 @@ describe('NFT collection tests', async function() {
             'chain': chain,
             'address': collection
         }).then(function(response) {
-            const data = response.raw;
-            expect(data.name).to.equal(collectionName);
-            expect(data.symbol).to.equal(collectionSymbol);
-            done();
+            setTimeout(function() {
+                const data = response.raw;
+                expect(data.name).to.equal(collectionName);
+                expect(data.symbol).to.equal(collectionSymbol);
+                done();
+        }, 5000);// timeout for Moralis to update the data
         }).catch(function(err) {
             done(err);
         });
