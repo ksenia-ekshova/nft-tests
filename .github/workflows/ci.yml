@@ -22,20 +22,17 @@ jobs:
         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
         sudo apt-get update
         sudo apt-get install docker-ce docker-ce-cli containerd.io
-
     - name: Run Docker container
       run: |
         docker run -d -p 4000:4000 evercoinx/faraway:nft-collection-deployer-backend
-        
     - name: Install Dependencies
       run: |
         sudo apt-get install -y nodejs npm
         npm install axios mocha moralis ethers
         npm install chai@4.3.4
-
-      - name: Run Tests
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          MORALIS_API_KEY: ${{ secrets.MORALIS_API_KEY }}
-        run: npm test
+    - name: Run Tests
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        MORALIS_API_KEY: ${{ secrets.MORALIS_API_KEY }}
+      run: npx mocha
