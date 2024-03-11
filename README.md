@@ -29,7 +29,18 @@ Test Matic coins can be obtained from the website: https://mumbaifaucet.com/.
 https://www.alchemy.com/nft-api
 https://www.quicknode.com/docs/ethereum/eth_getCode
 
-## Installation
+## Github Actions
+
+The project is configured to use Github Actions. The configuration file is `.github/workflows/main.yml`.
+Environment variables are set via Secrets
+Image for Manual workflow sets via Githun Actions => Manual Workflow => Run Workflow 
+
+Example value for Ports for image backend `4000:4000`
+Example value for Docker image backend `evercoinx/faraway:nft-collection-deployer-backend`
+
+Automatic run of CI is configured to start with every push into the `main`
+
+## Local installation
 
 Make sure you have Node.js and npm installed. [Node.js and npm download link](https://nodejs.org/en/download/).
 
@@ -41,7 +52,7 @@ cd nft-tests
 npm install
 ```
 
-## Run
+## Local run
 
 Before running tests, set up environment variables. Create a `.env` file and add the following variables to it:
 
@@ -57,14 +68,4 @@ Run tests using commands:
 npm test/npx mocha
 ```
 
-## Github Actions
-
-The project is configured to use Github Actions. The configuration file is `.github/workflows/main.yml`.
-Environment variables are set via Secrets
-Image for Manual workflow sets via Githun Actions => Manual Workflow => Run Workflow 
-
-Example value for Ports for image backend `4000:4000`
-Example value for Docker image backend `evercoinx/faraway:nft-collection-deployer-backend`
-
-Automatic run of CI is configured to start with every push into the `main`
 
