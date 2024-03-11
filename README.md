@@ -4,7 +4,7 @@ This project contains examples of integration tests to test the operation of a s
 Preconditions: creating a new wallet, replenishing its balance from bank account, interacting with the contract (creating an NFT collection and mint NFT) are implemented using the Ethers library.
 To test the NFT collection through the API, the Moralis library and API key were used, and the Axios library was used to interact with the application backend.
 Mocha was chosen as the test runner.
-The sensitive date is placed in the .env file, for local launch, see the description below.
+The sensitive data is placed in the .env file, for local launch, see the description below.
 
 # Task
 
@@ -31,14 +31,16 @@ https://www.quicknode.com/docs/ethereum/eth_getCode
 
 ## Github Actions
 
-The project is configured to use Github Actions. The configuration file is `.github/workflows/main.yml`.
-Environment variables are set via Secrets
+The project is configured to use Github Actions. 
+The configuration file for autorun is `.github/workflows/ci.yml`.
+The configuration file for manual run is `.github/workflows/manual.yml`.
+Environment variables are set via Secrets.
 Image for Manual workflow sets via Githun Actions => Manual Workflow => Run Workflow 
 
 Example value for Ports for image backend `4000:4000`
 Example value for Docker image backend `evercoinx/faraway:nft-collection-deployer-backend`
 
-Automatic run of CI is configured to start with every push into the `main`
+Autorun of CI is configured to start with every push into the `main`
 
 ## Local installation
 
